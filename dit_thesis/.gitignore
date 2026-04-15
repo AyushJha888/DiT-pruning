@@ -1,0 +1,45 @@
+# ── Pretrained weights (too large for git) ───────────────────────────────────
+pretrained_models/
+
+# ── Generated samples & large result outputs ─────────────────────────────────
+results/samples/
+results/saliency_maps/*.png
+results/saliency_maps/*.npy
+results/tdw_router.pt
+results/width_schedule.png
+
+# Keep CSV stubs (small, useful for history)
+!results/baseline_metrics.csv
+!results/tdw_comparison.csv
+
+# ── Data ─────────────────────────────────────────────────────────────────────
+data/
+
+# ── wandb local run cache ─────────────────────────────────────────────────────
+wandb/
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+.env
+
+# ── IDE / OS ─────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
