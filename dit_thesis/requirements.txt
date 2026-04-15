@@ -1,0 +1,30 @@
+# Core
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# Diffusion / model
+diffusers>=0.25.0        # for AutoencoderKL (VAE)
+timm>=0.9.0              # DiT uses timm Attention
+
+# Metrics
+fvcore>=0.1.5.post20221221   # GFLOPs counting
+pytorch-fid>=0.3.0           # FID score
+# torchmetrics[image]>=1.2.0  # alternative FID backend
+
+# Experiment tracking
+wandb>=0.16.0
+
+# Visualisation
+matplotlib>=3.7.0
+seaborn>=0.13.0
+
+# Notebooks
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+tqdm>=4.65.0
+
+# DiT official repo (clone separately):
+# git clone https://github.com/facebookresearch/DiT.git
+# pip install -e ./DiT   (or add to sys.path in notebooks)
