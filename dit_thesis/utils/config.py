@@ -53,7 +53,7 @@ RESULTS_DIR  = "results/"
 SALIENCY_DIR = "results/saliency_maps/"
 
 WANDB_PROJECT = "dit-token-pruning-thesis"
-WANDB_ENTITY  = "your-wandb-username"   # ← replace with your wandb username
+WANDB_ENTITY  = "rahul23082001jha"
 WANDB_TAGS    = ["phase1"]
 
 # ---------------------------------------------------------------------------
