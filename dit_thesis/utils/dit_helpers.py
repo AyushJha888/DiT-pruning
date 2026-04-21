@@ -18,8 +18,35 @@ from PIL import Image
 from tqdm.auto import tqdm
 
 # ---------------------------------------------------------------------------
-# Optional imports — gracefully degrade if DiT repo is not on sys.path
+# Optional imports — auto-locate DiT repo or gracefully degrade
 # ---------------------------------------------------------------------------
+import sys
+
+def _ensure_dit_on_path() -> bool:
+    """Try to find and add the DiT repo to sys.path. Returns True if found."""
+    # Already importable — nothing to do
+    try:
+        import models  # noqa: F401
+        return True
+    except ImportError:
+        pass
+
+    # Common locations relative to this file's workspace
+    _this_dir = Path(__file__).resolve().parent.parent  # dit_thesis/
+    candidates = [
+        _this_dir.parent / "DiT",          # /workspace/DiT-pruning/DiT
+        _this_dir / "DiT",                 # /workspace/DiT-pruning/dit_thesis/DiT
+        Path("/workspace/DiT"),
+        Path("/DiT"),
+    ]
+    for p in candidates:
+        if (p / "models.py").exists():
+            sys.path.insert(0, str(p))
+            return True
+    return False
+
+_dit_found = _ensure_dit_on_path()
+
 try:
     from models import DiT_XL_2                        # official DiT repo
     from diffusion import create_diffusion              # official DiT repo
@@ -74,9 +101,10 @@ def load_model(config) -> Tuple:
     """
     if not _DEPS_AVAILABLE:
         raise ImportError(
-            "DiT repo or diffusers not found on sys.path.\n"
-            "Add the official DiT repository to sys.path before calling load_model().\n"
-            "  import sys; sys.path.insert(0, '/path/to/DiT')"
+            "DiT repo not found. Clone it next to this project and retry:\n"
+            "  git clone https://github.com/facebookresearch/DiT.git "
+            "/workspace/DiT-pruning/DiT\n"
+            "Or add it manually: import sys; sys.path.insert(0, '/path/to/DiT')"
         )
 
     device = config.DEVICE

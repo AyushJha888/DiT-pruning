@@ -53,7 +53,7 @@ RESULTS_DIR  = "results/"
 SALIENCY_DIR = "results/saliency_maps/"
 
 WANDB_PROJECT = "dit-token-pruning-thesis"
-WANDB_ENTITY  = "rahul23082001jha"
+WANDB_ENTITY  = os.environ.get("WANDB_ENTITY", "")
 WANDB_TAGS    = ["phase1"]
 
 # ---------------------------------------------------------------------------
